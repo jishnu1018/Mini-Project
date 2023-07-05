@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:joso_app/choice.dart';
 import 'package:joso_app/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:joso_app/securestorage.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -11,6 +12,8 @@ class MyLogin extends StatefulWidget {
   @override
   State<MyLogin> createState() => _MyLoginState();
 }
+
+final secure = SecureStorage();
 
 class _MyLoginState extends State<MyLogin> {
   final _usernameController = TextEditingController();
@@ -106,26 +109,25 @@ class _MyLoginState extends State<MyLogin> {
                             ),
                           ),
                         ),
-                        Row(
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                // Implement forgot password logic
-                              },
-                              style: ButtonStyle(),
-                              child: const Text(
-                                'Forgot Password?',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: Color.fromARGB(255, 102, 104, 110),
-                                  fontSize: 15,
-                                  
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     TextButton(
+                        //       onPressed: () {
+                        //         // Implement forgot password logic
+                        //       },
+                        //       style: ButtonStyle(),
+                        //       child: const Text(
+                        //         'Forgot Password?',
+                        //         textAlign: TextAlign.left,
+                        //         style: TextStyle(
+                        //           decoration: TextDecoration.underline,
+                        //           color: Color.fromARGB(255, 102, 104, 110),
+                        //           fontSize: 15,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         const SizedBox(
                           height: 30,
                         ),
@@ -145,6 +147,8 @@ class _MyLoginState extends State<MyLogin> {
                                         msg: "Please enter password");
                                   } else {
                                     loginuser();
+                                    secure.writeSecureData(
+                                        'email', _usernameController.text);
                                   }
                                 },
                                 style: ButtonStyle(

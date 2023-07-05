@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-class CookApply extends StatefulWidget {
-  const CookApply({super.key});
+class voluntaryApply extends StatefulWidget {
+  const voluntaryApply({super.key});
 
   @override
-  State<CookApply> createState() => _CookApplyState();
+  State<voluntaryApply> createState() => _voluntaryApplyState();
 }
 
-class _CookApplyState extends State<CookApply> {
+class _voluntaryApplyState extends State<voluntaryApply> {
   final _namecon = TextEditingController();
   final _placecon = TextEditingController();
   final _duracon = TextEditingController();
@@ -203,7 +203,7 @@ class _CookApplyState extends State<CookApply> {
                       };
                       Navigator.pop(context);
                       await FirebaseFirestore.instance
-                          .collection('cookapply')
+                          .collection('voluntaryapply')
                           .doc()
                           .set(
                         {
@@ -250,192 +250,3 @@ class _CookApplyState extends State<CookApply> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-//   final _namecon = TextEditingController();
-//   final _placecon = TextEditingController();
-//   final _duracon = TextEditingController();
-//   final _comcon = TextEditingController();
-//   static final _firebaseauth = FirebaseAuth.instance;
-//   final _text = TextEditingController();
-//   bool _validate = false;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SafeArea(
-//         child: Padding(
-//           padding: const EdgeInsets.only(left: 30.0, right: 30),
-//           child: SingleChildScrollView(
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 const SizedBox(
-//                   height: 40,
-//                 ),
-//                 const SizedBox(
-//                   height: 40,
-//                 ),
-//                 const SizedBox(
-//                   height: 40,
-//                 ),
-//                 TextFormField(
-//                   controller: _namecon,
-//                   decoration: const InputDecoration(
-//                       prefixIcon: Icon(Icons.person),
-//                       isDense: true,
-//                       contentPadding: EdgeInsets.all(20),
-//                       label: Text('Name'),
-//                       fillColor: Color.fromARGB(120, 255, 255, 255),
-//                       filled: true,
-//                       border: OutlineInputBorder(
-//                           borderRadius: BorderRadius.all(Radius.circular(20)),
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 255, 255, 255))),
-//                       errorBorder: OutlineInputBorder(
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 64, 116, 220))),
-//                       focusedBorder: OutlineInputBorder(
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 64, 116, 220)))),
-//                 ),
-//                 const SizedBox(
-//                   height: 30,
-//                 ),
-//                 TextFormField(
-//                   controller: _placecon,
-//                   keyboardType: TextInputType.emailAddress,
-//                   // ignore: prefer_const_constructors
-//                   decoration: InputDecoration(
-//                       prefixIcon: const Icon(Icons.home),
-//                       isDense: true,
-//                       contentPadding: const EdgeInsets.all(20),
-//                       label: const Text('Place'),
-//                       fillColor: const Color.fromARGB(120, 255, 255, 255),
-//                       filled: true,
-//                       border: const OutlineInputBorder(
-//                           borderRadius: BorderRadius.all(Radius.circular(20)),
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 255, 255, 255))),
-//                       errorBorder: const OutlineInputBorder(
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 64, 116, 220))),
-//                       focusedBorder: const OutlineInputBorder(
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 64, 116, 220)))),
-//                 ),
-//                 const SizedBox(
-//                   height: 30,
-//                 ),
-//                 TextFormField(
-//                   controller: _duracon,
-//                   keyboardType: TextInputType.streetAddress,
-//                   // ignore: prefer_const_constructors
-//                   decoration: InputDecoration(
-//                       prefixIcon: const Icon(Icons.lock_clock),
-//                       isDense: true,
-//                       contentPadding: const EdgeInsets.all(20),
-//                       label: const Text('Duration'),
-//                       fillColor: const Color.fromARGB(120, 255, 255, 255),
-//                       filled: true,
-//                       border: const OutlineInputBorder(
-//                           borderRadius: BorderRadius.all(Radius.circular(20)),
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 255, 255, 255))),
-//                       errorBorder: const OutlineInputBorder(
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 64, 116, 220))),
-//                       focusedBorder: const OutlineInputBorder(
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 64, 116, 220)))),
-//                 ),
-//                 const SizedBox(
-//                   height: 30,
-//                 ),
-//                 TextFormField(
-//                   controller: _comcon,
-//                   decoration: const InputDecoration(
-//                       prefixIcon: Icon(Icons.comment),
-//                       isDense: true,
-//                       contentPadding: EdgeInsets.all(25),
-//                       label: Text('Comments'),
-//                       fillColor: Color.fromARGB(120, 255, 255, 255),
-//                       filled: true,
-//                       border: OutlineInputBorder(
-//                           borderRadius: BorderRadius.all(Radius.circular(20)),
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 255, 255, 255))),
-//                       errorBorder: OutlineInputBorder(
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 64, 116, 220))),
-//                       focusedBorder: OutlineInputBorder(
-//                           borderSide: BorderSide(
-//                               color: Color.fromARGB(255, 64, 116, 220)))),
-//                 ),
-//                 const SizedBox(
-//                   height: 50,
-//                 ),
-//                 ElevatedButton(
-//                   style: ElevatedButton.styleFrom(
-//                     backgroundColor: const Color.fromARGB(255, 1, 0, 27),
-//                   ),
-//                   onPressed: () async {
-//                     if (_namecon.text.isEmpty ||
-//                         _placecon.text.isEmpty ||
-//                         _duracon.text.isEmpty ||
-//                         _comcon.text.isEmpty) {
-//                       setState(() {
-//                         _validate = true;
-//                       });
-//                     } else {
-//                       _validate = false;
-//                       Map<String, dynamic> data = {
-//                         'Name': _namecon.text,
-//                         'Place': _placecon.text,
-//                         'Duration': _duracon.text,
-//                         'Comments': _comcon.text,
-//                       };
-//                       Navigator.pop(context);
-//                       await FirebaseFirestore.instance
-//                           .collection('cookapply')
-//                           .doc()
-//                           .set(
-//                         {
-//                           "name": _namecon.text.trim(),
-//                           "place": _placecon.text.trim(),
-//                           "duration": _duracon.text.trim(),
-//                           "comment": _comcon.text.trim(),
-//                           "uid": FirebaseAuth.instance.currentUser!.uid,
-//                         },
-//                       );
-//                     }
-//                   },
-//                   child: Padding(
-//                     padding: const EdgeInsets.all(6),
-//                     child: Container(
-//                       height: 40,
-//                       alignment: Alignment.center,
-//                       width: 200,
-//                       child: const Text(
-//                         'UPLOAD',
-//                         style: TextStyle(fontSize: 20),
-//                       ),
-//                     ),
-//                   ),
-//                 )
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

@@ -1,18 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:joso_app/services/cookapply.dart';
+import 'package:joso_app/services/tutorapply.dart';
 
-class ApplyScreen extends StatefulWidget {
-  const ApplyScreen({Key? key}) : super(key: key);
+import 'services/houseapply.dart';
+//import 'package:joso_app/services/cookapply.dart';
+
+class HousekapplyScreen extends StatefulWidget {
+  const HousekapplyScreen({Key? key}) : super(key: key);
 
   @override
-  State<ApplyScreen> createState() => _ApplyScreenState();
+  State<HousekapplyScreen> createState() => _HouseapplyScreenState();
 }
 
-class _ApplyScreenState extends State<ApplyScreen> {
+class _HouseapplyScreenState extends State<HousekapplyScreen> {
   final _userStream = FirebaseFirestore.instance
-      .collection('cookapply')
+      .collection('houseapply')
       .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
       .snapshots();
 
@@ -34,7 +37,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
               onPressed: () {
                 // Delete the item from Firestore
                 FirebaseFirestore.instance
-                    .collection('cookapply')
+                    .collection('houseapply')
                     .doc(documentId)
                     .delete();
 
@@ -63,9 +66,9 @@ class _ApplyScreenState extends State<ApplyScreen> {
             iconSize: 20,
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 1, 0, 27),
+        backgroundColor: const Color.fromARGB(255, 1, 0, 27),
         title: const Text(
-          'COOK',
+          'HOUSE KEEPER',
           textAlign: TextAlign.center,
         ),
         // actions: <Widget>[
@@ -126,7 +129,6 @@ class _ApplyScreenState extends State<ApplyScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(docs[index]['place']),
-                          Text(docs[index]['date']),
                           Text(docs[index]['duration']),
                           Text(docs[index]['comment']),
                           const Divider(),
@@ -144,11 +146,11 @@ class _ApplyScreenState extends State<ApplyScreen> {
             child: FloatingActionButton(
               onPressed: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const CookApply()),
+                  MaterialPageRoute(builder: (context) => const HouseApply()),
                 );
               },
               child: const Icon(Icons.add),
-              backgroundColor: Color.fromARGB(255, 1, 0, 27),
+              backgroundColor: const Color.fromARGB(255, 1, 0, 27),
             ),
           ),
         ],
@@ -156,155 +158,6 @@ class _ApplyScreenState extends State<ApplyScreen> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-//   Future<void> _showDeleteConfirmationDialog(String documentId) async {
-//     return showDialog<void>(
-//       context: context,
-//       builder: (BuildContext context) {
-//         return AlertDialog(
-//           title: const Text('Confirm Deletion'),
-//           content: const Text('Are you sure you want to delete this item?'),
-//           actions: [
-//             TextButton(
-//               onPressed: () {
-//                 Navigator.of(context).pop();
-//               },
-//               child: const Text('Cancel'),
-//             ),
-//             TextButton(
-//               onPressed: () {
-//                 // Delete the item from Firestore
-//                 FirebaseFirestore.instance
-//                     .collection('cookapply')
-//                     .doc(documentId)
-//                     .delete();
-
-//                 Navigator.of(context).pop();
-//               },
-//               child: const Text('Delete'),
-//             ),
-//           ],
-//         );
-//       },
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: const Color.fromARGB(255, 234, 234, 234),
-//       appBar: AppBar(
-//         leading: Padding(
-//           padding: const EdgeInsets.only(left: 15.0),
-//           child: IconButton(
-//             onPressed: () {
-//               Navigator.pop(context);
-//             },
-//             icon: const Icon(Icons.arrow_back_ios),
-//             iconSize: 20,
-//           ),
-//         ),
-//         backgroundColor: Color.fromARGB(255, 1, 0, 27),
-//         title: const Text(
-//           'COOK',
-//           textAlign: TextAlign.center,
-//         ),
-//         // actions: <Widget>[
-//         //   IconButton(
-//         //     onPressed: () => Navigator.of(context).push(
-//         //       MaterialPageRoute(builder: (_) => const SearchPage()),
-//         //     ),
-//         //     icon: const Icon(Icons.search),
-//         //     iconSize: 25,
-//         //   ),
-//         // ],
-//       ),
-//       body: Stack(
-//         children: [
-//           StreamBuilder(
-//             stream: _userStream,
-//             builder: (context, snapshot) {
-//               if (snapshot.hasError) {
-//                 return const Text('connection error');
-//               }
-//               if (snapshot.connectionState == ConnectionState.waiting) {
-//                 return const Text('Loading...');
-//               }
-//               var docs = snapshot.data!.docs;
-//               return ListView.builder(
-//                 itemCount: docs.length,
-//                 itemBuilder: (context, index) {
-//                   return Dismissible(
-//                     key: UniqueKey(),
-//                     direction: DismissDirection.endToStart,
-//                     onDismissed: (_) async {
-//                       var i = docs[index];
-//                       await _showDeleteConfirmationDialog(i.id);
-//                       setState(() {
-//                         docs.removeAt(index);
-//                       });
-//                     },
-//                     background: Container(
-//                       color: Colors.red,
-//                       margin: const EdgeInsets.symmetric(horizontal: 15),
-//                       alignment: Alignment.centerRight,
-//                       child: const Icon(
-//                         Icons.delete,
-//                         color: Colors.white,
-//                       ),
-//                     ),
-//                     child: ListTile(
-//                       leading: const Icon(Icons.person),
-//                       title: Text(
-//                         docs[index]['name'],
-//                         style: const TextStyle(
-//                           fontSize: 18,
-//                           color: Colors.black87,
-//                           fontWeight: FontWeight.bold,
-//                         ),
-//                       ),
-//                       subtitle: Column(
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         children: [
-//                           Text(docs[index]['place']),
-//                           Text(docs[index]['duration']),
-//                           Text(docs[index]['comment']),
-//                           const Divider(),
-//                         ],
-//                       ),
-//                     ),
-//                   );
-//                 },
-//               );
-//             },
-//           ),
-//           Positioned(
-//             bottom: 16,
-//             right: 16,
-//             child: FloatingActionButton(
-//               onPressed: () {
-//                 Navigator.of(context).push(
-//                   MaterialPageRoute(builder: (context) => CookApply()),
-//                 );
-//               },
-//               child: const Icon(Icons.add),
-//               backgroundColor: Color.fromARGB(255, 1, 0, 27),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 // class SearchPage extends StatelessWidget {
 //   const SearchPage({Key? key}) : super(key: key);

@@ -8,6 +8,8 @@
 // import 'services/auth_services.dart';
 
 // class EmailVerificationPage extends StatefulWidget {
+//   const EmailVerificationPage({super.key});
+
 //   @override
 //   _EmailVerificationPageState createState() => _EmailVerificationPageState();
 // }
@@ -52,7 +54,8 @@
 //   Widget build(BuildContext context) {
 //     if (isemailverified == true) {
 //       setState(() {
-//         Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>mychoice()));
+//         Navigator.pushReplacement(
+//             context, MaterialPageRoute(builder: (context) => mychoice()));
 //       });
 //       // Get.to(() => const mychoice());
 //     }
@@ -74,8 +77,12 @@
 //             ElevatedButton(
 //               onPressed: () async {
 //                 if (isemailverified = false) {
+//                   Navigator.pushReplacement(
+//                       context,
+//                       MaterialPageRoute(
+//                           builder: (context) => EmailVerificationPage()));
 //                   // Email verified, navigate to the next screen
-//                   Get.to(EmailVerificationPage());
+//                   //Get.to(EmailVerificationPage());
 //                 } else {
 //                   showDialog(
 //                     context: context,

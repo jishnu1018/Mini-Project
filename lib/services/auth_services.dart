@@ -12,21 +12,23 @@ class AuthServices {
       UserCredential _cred = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
       res = "success";
-    
     } catch (e) {
       res = e.toString();
     }
     await FirebaseFirestore.instance
         .collection('users')
         .doc(_firebaseAuth.currentUser!.uid)
-        .set({
-      'username': "",
-      'email': "",
-      'about me': "",
-      'experience': ""
-    });
+        .set({'username': "", 'email': "", 'about me': "", 'experience': ""});
 
     return res;
+  }
+
+  static signout() async {
+    try {
+      await _firebaseAuth.signOut();
+    } catch (e) {
+      return e.toString();
+    }
   }
 
   static Future<String> Login(
@@ -35,6 +37,8 @@ class AuthServices {
     try {
       UserCredential _cred = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
+      final user = await FirebaseAuth.instance.currentUser;
+      await user!.sendEmailVerification();
       res = "success";
     } catch (e) {
       res = e.toString();
@@ -42,4 +46,6 @@ class AuthServices {
 
     return res;
   }
+
+  currentuser() {}
 }

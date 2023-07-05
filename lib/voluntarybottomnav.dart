@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:joso_app/Tutorrequest.dart';
 import 'package:joso_app/request.dart';
 import 'package:joso_app/apply.dart';
+import 'package:joso_app/tutorapply.dart';
+import 'package:joso_app/voluntaryapply.dart';
+import 'package:joso_app/voluntaryrequest.dart';
 
 import 'apply.dart';
 
-class Bottomnav extends StatefulWidget {
-  const Bottomnav({super.key});
+class Voluntarybottomnav extends StatefulWidget {
+  const Voluntarybottomnav({super.key});
 
   @override
-  State<Bottomnav> createState() => _BottomnavState();
+  State<Voluntarybottomnav> createState() => _VoluntarybottomnavState();
 }
 
-class _BottomnavState extends State<Bottomnav> {
+class _VoluntarybottomnavState extends State<Voluntarybottomnav> {
   int _selectedIndex = 0;
   final _screens1 = [
-    ApplyScreen(),
-    OfferScreen(),
+    voluntaryapplyScreen(),
+    voluntaryOfferScreen(),
   ];
 
   @override

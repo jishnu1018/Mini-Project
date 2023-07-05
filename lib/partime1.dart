@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:joso_app/bottomnav.dart';
+import 'package:joso_app/catererbottomnav.dart';
+import 'package:joso_app/driverbottomnav.dart';
+import 'package:joso_app/housebottomnav.dart';
+import 'package:joso_app/tutorbottomnav.dart';
 
 class MyPartime1 extends StatefulWidget {
   const MyPartime1({super.key});
@@ -27,7 +31,7 @@ class _MyPartime1State extends State<MyPartime1> {
             ),
           ),
           backgroundColor: const Color.fromARGB(255, 1, 0, 27),
-          title: Text(
+          title: const Text(
             'JOB SECTORS',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -57,7 +61,10 @@ class _MyPartime1State extends State<MyPartime1> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (ct)=>Bottomnav()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (ct) => const Bottomnav()));
                     },
                     child: Stack(
                       alignment: Alignment.bottomRight,
@@ -65,7 +72,7 @@ class _MyPartime1State extends State<MyPartime1> {
                         Container(
                           height: 200,
                           width: double.infinity,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Colors.black,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20)),
@@ -74,7 +81,7 @@ class _MyPartime1State extends State<MyPartime1> {
                                   fit: BoxFit.fill)),
                         ),
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(20),
                                 bottomLeft: Radius.circular(20)),
@@ -90,19 +97,19 @@ class _MyPartime1State extends State<MyPartime1> {
                                   alignment: Alignment.center,
                                   height: 30,
                                   width: 95,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                       color: Colors.red,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
-                                  child: Text(
+                                  child: const Text(
                                     'COOK',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 14),
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 20),
+                              const Padding(
+                                padding: EdgeInsets.only(right: 20),
                                 child: Icon(
                                   Icons.arrow_circle_right_outlined,
                                   color: Colors.white,
@@ -118,7 +125,10 @@ class _MyPartime1State extends State<MyPartime1> {
                   const SizedBox(height: 30),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, 'Tutor');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (ct) => const Tutorbottomnav()));
                     },
                     child: Stack(
                       alignment: Alignment.bottomRight,
@@ -126,7 +136,7 @@ class _MyPartime1State extends State<MyPartime1> {
                         Container(
                           height: 200,
                           width: double.infinity,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Colors.black,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20)),
@@ -135,7 +145,7 @@ class _MyPartime1State extends State<MyPartime1> {
                                   fit: BoxFit.fill)),
                         ),
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(20),
                                 bottomLeft: Radius.circular(20),
@@ -151,12 +161,12 @@ class _MyPartime1State extends State<MyPartime1> {
                                   alignment: Alignment.center,
                                   width: 95,
                                   height: 30,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Colors.red,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20)),
                                   ),
-                                  child: Text(
+                                  child: const Text(
                                     'TUTOR',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 14),
@@ -180,7 +190,10 @@ class _MyPartime1State extends State<MyPartime1> {
                   const SizedBox(height: 30),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, 'Housekeeper');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (ct) => const Housebottomnav()));
                     },
                     child: Stack(
                       alignment: Alignment.bottomRight,
@@ -188,7 +201,7 @@ class _MyPartime1State extends State<MyPartime1> {
                         Container(
                           height: 200,
                           width: double.infinity,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Colors.black,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(20),
@@ -198,7 +211,7 @@ class _MyPartime1State extends State<MyPartime1> {
                                   fit: BoxFit.fill)),
                         ),
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(20),
                                   bottomRight: Radius.circular(20)),
@@ -213,11 +226,11 @@ class _MyPartime1State extends State<MyPartime1> {
                                   alignment: Alignment.center,
                                   width: 95,
                                   height: 30,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                       color: Colors.red,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
-                                  child: Text(
+                                  child: const Text(
                                     'HOUSE KEEPER',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 12),
@@ -241,7 +254,10 @@ class _MyPartime1State extends State<MyPartime1> {
                   const SizedBox(height: 30),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, 'caterer');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (ct) => const catererbottomnav()));
                     },
                     child: Stack(
                       alignment: Alignment.bottomRight,
@@ -249,7 +265,7 @@ class _MyPartime1State extends State<MyPartime1> {
                         Container(
                           height: 200,
                           width: double.infinity,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Colors.black,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(20),
@@ -260,7 +276,7 @@ class _MyPartime1State extends State<MyPartime1> {
                                   fit: BoxFit.fill)),
                         ),
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(20),
                                   bottomRight: Radius.circular(20)),
@@ -275,11 +291,11 @@ class _MyPartime1State extends State<MyPartime1> {
                                   alignment: Alignment.center,
                                   width: 95,
                                   height: 30,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                       color: Colors.red,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
-                                  child: Text(
+                                  child: const Text(
                                     'CATERER',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 14),
@@ -302,8 +318,11 @@ class _MyPartime1State extends State<MyPartime1> {
                   ),
                   const SizedBox(height: 30),
                   InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, 'driver');
+                      onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (ct) => const driverbottomnav()));
                     },
                     child: Stack(
                       alignment: Alignment.bottomRight,
@@ -311,7 +330,7 @@ class _MyPartime1State extends State<MyPartime1> {
                         Container(
                           height: 200,
                           width: double.infinity,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Colors.black,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(20),
@@ -321,7 +340,7 @@ class _MyPartime1State extends State<MyPartime1> {
                                   fit: BoxFit.fill)),
                         ),
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(20),
                                   bottomRight: Radius.circular(20)),
@@ -336,11 +355,11 @@ class _MyPartime1State extends State<MyPartime1> {
                                   alignment: Alignment.center,
                                   width: 95,
                                   height: 30,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                       color: Colors.red,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
-                                  child: Text(
+                                  child: const Text(
                                     'DRIVER',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 14),

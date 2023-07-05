@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:joso_app/email_verification.dart';
+import 'package:joso_app/joso.dart';
+import 'package:joso_app/securestorage.dart';
+import 'package:joso_app/services/auth_services.dart';
+import 'package:joso_app/voluntarybottomnav.dart';
 
 // ignore: camel_case_types
 class mychoice extends StatefulWidget {
@@ -10,6 +14,8 @@ class mychoice extends StatefulWidget {
   @override
   State<mychoice> createState() => _mychoiceState();
 }
+
+final secureStorage = SecureStorage();
 
 class _mychoiceState extends State<mychoice> {
   get firebaseAuth => null;
@@ -61,15 +67,15 @@ class _mychoiceState extends State<mychoice> {
                 color: Color.fromARGB(255, 1, 0, 27),
               ),
               child: Center(
-                  // child: Text(
-                  //   'JOSO',
-                  //   textAlign: TextAlign.center,
-                  //   style: TextStyle(
-                  //     color: Color.fromARGB(255, 255, 255, 255),
-                  //     fontSize: 50,
-                  //   ),
-                  // ),
+                child: Text(
+                  'JOSO',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontSize: 50,
                   ),
+                ),
+              ),
             ),
             ListTile(
               leading: const Icon(Icons.home),
@@ -80,30 +86,66 @@ class _mychoiceState extends State<mychoice> {
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
               ),
-              onTap: () => {Navigator.pushNamed(context, 'profile')},
+              onTap: () => {Navigator.pushNamed(context, 'frontprofile')},
             ),
+            // ListTile(
+            //   leading: const Icon(Icons.notifications),
+            //   title: const Text(
+            //     'Notifications',
+            //     style: TextStyle(
+            //         color: Color.fromARGB(255, 1, 0, 27),
+            //         fontSize: 15,
+            //         fontWeight: FontWeight.bold),
+            //   ),
+            //   onTap: () => {Navigator.of(context).pop()},
+            // ),
             ListTile(
-              leading: const Icon(Icons.notifications),
-              title: const Text(
-                'Notifications',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 1, 0, 27),
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),
-              ),
-              onTap: () => {Navigator.of(context).pop()},
-            ),
-            ListTile(
-              leading: const Icon(Icons.exit_to_app),
-              title: const Text(
-                'Logout',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 1, 0, 27),
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),
-              ),
-              onTap: () => {Navigator.pushNamed(context, 'joso')},
-            ),
+                leading: const Icon(Icons.exit_to_app),
+                title: const Text(
+                  'Logout',
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 1, 0, 27),
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Container(
+                          child: AlertDialog(
+                            title: const Text(
+                              'Do you want to Log Out?',
+                              style: TextStyle(fontSize: 15),
+                            ),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Cancel')),
+                              TextButton(
+                                  onPressed: () async {
+                                    secureStorage.deleteSecureData('email');
+                                    final res = await AuthServices.signout();
+
+                                    if (res == null) {
+                                      Navigator.pop(context);
+                                      Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const Myjoso()));
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(content: res));
+                                    }
+                                  },
+                                  child: const Text('Log Out')),
+                            ],
+                          ),
+                        );
+                      });
+                })
           ],
         ),
       ),
@@ -175,7 +217,11 @@ class _mychoiceState extends State<mychoice> {
                               child: TextButton(
                                   onPressed: () {
                                     setState(() {});
-                                    Navigator.pushNamed(context, 'vol1');
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: ((context) =>
+                                                Voluntarybottomnav())));
                                   },
                                   style: ButtonStyle(
                                       shape: MaterialStateProperty.all(

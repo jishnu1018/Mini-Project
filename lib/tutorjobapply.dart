@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
-class Mycatereradd extends StatefulWidget {
-  const Mycatereradd({super.key});
+class Mytutorapply extends StatefulWidget {
+  const Mytutorapply({super.key});
 
   @override
-  State<Mycatereradd> createState() => _MycatereraddState();
+  State<Mytutorapply> createState() => _MytutorapplyState();
 }
 
-class _MycatereraddState extends State<Mycatereradd> {
+class _MytutorapplyState extends State<Mytutorapply> {
   TextEditingController Name = TextEditingController();
-  TextEditingController place = TextEditingController();
-  TextEditingController duration = TextEditingController();
+  TextEditingController Address = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController Mob_no = TextEditingController();
   TextEditingController comments = TextEditingController();
   final _text = TextEditingController();
   bool _validate = false;
@@ -23,8 +22,9 @@ class _MycatereraddState extends State<Mycatereradd> {
   @override
   void dispose() {
     Name.dispose();
-    place.dispose();
-    duration.dispose();
+    Address.dispose();
+    email.dispose();
+    Mob_no.dispose();
     comments.dispose();
     super.dispose();
   }
@@ -33,6 +33,17 @@ class _MycatereraddState extends State<Mycatereradd> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 15.0),
+          child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios),
+            iconSize: 20,
+            //replace with our own icon data.
+          ),
+        ),
         backgroundColor: Color.fromARGB(255, 1, 0, 27),
         title: Text('ADD A VACANCY'),
       ),
@@ -57,9 +68,9 @@ class _MycatereraddState extends State<Mycatereradd> {
             ),
             SizedBox(height: 20),
             TextField(
-              controller: place,
+              controller: Address,
               decoration: InputDecoration(
-                hintText: 'place',
+                hintText: 'Address',
                 errorText: _validate ? 'Value Can\'t Be Empty' : null,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -68,9 +79,20 @@ class _MycatereraddState extends State<Mycatereradd> {
             ),
             SizedBox(height: 20),
             TextField(
-              controller: duration,
+              controller: email,
               decoration: InputDecoration(
-                hintText: 'duration',
+                hintText: 'Email',
+                errorText: _validate ? 'Value Can\'t Be Empty' : null,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            TextField(
+              controller: Mob_no,
+              decoration: InputDecoration(
+                hintText: 'Mob no',
                 errorText: _validate ? 'Value Can\'t Be Empty' : null,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -100,27 +122,29 @@ class _MycatereraddState extends State<Mycatereradd> {
                 onPressed: () {
                   setState(() {
                     if (Name.text.isEmpty ||
-                        place.text.isEmpty ||
-                        duration.text.isEmpty ||
+                        Address.text.isEmpty ||
+                        email.text.isEmpty ||
+                        Mob_no.text.isEmpty ||
                         comments.text.isEmpty) {
                       _validate = true;
                     } else {
                       _validate = false;
                       Map<String, dynamic> data = {
                         'Name': Name.text,
-                        'place': place.text,
-                        'duration': duration.text,
-                        'comments': comments.text,
+                        'Address': Address.text,
+                        'Email': email.text,
+                        'Mob no': Mob_no.text,
+                        'Comments': comments.text,
                       };
                       FirebaseFirestore.instance
-                          .collection("caterervacant")
+                          .collection("tutorapplicant")
                           .add(data);
-                      Navigator.of(context).pushNamed('caterer');
+                      Navigator.pop(context);
                     }
                   });
                 },
                 child: Text(
-                  'Post the job',
+                  'Apply',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -149,7 +173,26 @@ class _MycatereraddState extends State<Mycatereradd> {
 
 
 
+// import 'package:flutter/material.dart';
+// import 'package:flutter/src/widgets/framework.dart';
+// import 'package:flutter/src/widgets/placeholder.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 
+// class Mycookapply extends StatefulWidget {
+//   const Mycookapply({super.key});
+
+//   @override
+//   State<Mycookapply> createState() => _MycookapplyState();
+// }
+
+// class _MycookapplyState extends State<Mycookapply> {
+//   TextEditingController Name = TextEditingController();
+//   TextEditingController Address = TextEditingController();
+//   TextEditingController email = TextEditingController();
+//   TextEditingController Mob_no = TextEditingController();
+//   TextEditingController comments = TextEditingController();
+//   final _text = TextEditingController();
+//   bool _validate = false;
 
 //   @override
 //   void dispose() {
@@ -161,8 +204,8 @@ class _MycatereraddState extends State<Mycatereradd> {
 //   Widget build(BuildContext context) {
 //     return Scaffold(
 //         appBar: AppBar(
-//           backgroundColor: Color.fromARGB(255, 88, 13, 75),
-//           title: Text('ADD A VACANCY'),
+//           backgroundColor: Color.fromARGB(255, 1, 0, 27),
+//           title: Text('Apply for the job'),
 //         ),
 //         body: SingleChildScrollView(
 //           padding: EdgeInsets.only(
@@ -175,24 +218,29 @@ class _MycatereraddState extends State<Mycatereradd> {
 //                 controller: Name,
 //                 decoration: InputDecoration(
 //                     hintText: 'Name',
-//                     errorText: _validate ? 'Value Can\'t Be Empty' : null,
 //                     border: OutlineInputBorder(
 //                         borderRadius: BorderRadius.circular(10)))),
 //             SizedBox(height: 20),
 //             TextField(
-//               controller: place,
+//               controller: Address,
 //               decoration: InputDecoration(
-//                   hintText: 'place',
-//                   errorText: _validate ? 'Value Can\'t Be Empty' : null,
+//                   hintText: 'Address',
 //                   border: OutlineInputBorder(
 //                       borderRadius: BorderRadius.circular(10))),
 //             ),
 //             SizedBox(height: 20),
 //             TextField(
-//               controller: duration,
+//               controller: email,
 //               decoration: InputDecoration(
-//                   hintText: 'duration',
-//                   errorText: _validate ? 'Value Can\'t Be Empty' : null,
+//                   hintText: 'email',
+//                   border: OutlineInputBorder(
+//                       borderRadius: BorderRadius.circular(10))),
+//             ),
+//             SizedBox(height: 20),
+//             TextField(
+//               controller: Mob_no,
+//               decoration: InputDecoration(
+//                   hintText: 'Mob no',
 //                   border: OutlineInputBorder(
 //                       borderRadius: BorderRadius.circular(10))),
 //             ),
@@ -203,7 +251,6 @@ class _MycatereraddState extends State<Mycatereradd> {
 //                 controller: comments,
 //                 decoration: InputDecoration(
 //                     hintText: 'comments',
-//                     errorText: _validate ? 'Value Can\'t Be Empty' : null,
 //                     contentPadding:
 //                         EdgeInsets.symmetric(vertical: 60, horizontal: 10),
 //                     border: OutlineInputBorder(
@@ -216,35 +263,35 @@ class _MycatereraddState extends State<Mycatereradd> {
 //             ),
 //             TextButton(
 //                 onPressed: () {
-//                   _text.text.isEmpty ? _validate = true : _validate = false;
 //                   Map<String, dynamic> data = {
 //                     'Name': Name.text,
-//                     'place': place.text,
-//                     'duration': duration.text,
+//                     'Adress': Address.text,
+//                     'email': email.text,
+//                     'Mob_no': Mob_no.text,
 //                     'comments': comments.text,
 //                   };
 //                   FirebaseFirestore.instance
-//                       .collection("caterervacant")
+//                       .collection("cookapplicant")
 //                       .add(data);
-//                   ({Navigator.of(context).pushNamed('caterer')});
+//                   ({Navigator.of(context).pushNamed('vol1')});
 //                 },
 //                 child: Text(
-//                   'Post the job',
+//                   'APPLY',
 //                   style: TextStyle(
 //                     fontSize: 24,
 //                     fontWeight: FontWeight.bold,
 //                     color: Color.fromARGB(255, 230, 229, 227),
-//                     backgroundColor: Color.fromARGB(255, 88, 13, 75),
+//                     backgroundColor: Color.fromARGB(255, 1, 0, 27),
 //                   ),
 //                 ),
 //                 style: ButtonStyle(
 //                     backgroundColor: MaterialStateProperty.all(
-//                       Color.fromARGB(255, 88, 13, 75),
+//                       Color.fromARGB(255, 1, 0, 27),
 //                     ),
 //                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
 //                         borderRadius: BorderRadius.circular(20),
 //                         side: BorderSide(
-//                             color: Color.fromARGB(255, 114, 33, 136)))))),
+//                             color: const Color.fromARGB(255, 1,0,27)))))),
 //           ]),
 //         ));
 //   }

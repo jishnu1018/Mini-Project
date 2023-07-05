@@ -3,14 +3,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Mycookapply extends StatefulWidget {
-  const Mycookapply({super.key});
+class Myvoluntaryapply extends StatefulWidget {
+  const Myvoluntaryapply({super.key});
 
   @override
-  State<Mycookapply> createState() => _MycookapplyState();
+  State<Myvoluntaryapply> createState() => _MyvoluntaryapplyState();
 }
 
-class _MycookapplyState extends State<Mycookapply> {
+class _MyvoluntaryapplyState extends State<Myvoluntaryapply> {
   TextEditingController Name = TextEditingController();
   TextEditingController Address = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -58,6 +58,7 @@ class _MycookapplyState extends State<Mycookapply> {
             SizedBox(height: 20),
             TextField(
               controller: Name,
+              keyboardType: TextInputType.name,
               decoration: InputDecoration(
                 hintText: 'Name',
                 errorText: _validate ? 'Value Can\'t Be Empty' : null,
@@ -69,6 +70,7 @@ class _MycookapplyState extends State<Mycookapply> {
             SizedBox(height: 20),
             TextField(
               controller: Address,
+              keyboardType: TextInputType.streetAddress,
               decoration: InputDecoration(
                 hintText: 'Address',
                 errorText: _validate ? 'Value Can\'t Be Empty' : null,
@@ -80,6 +82,7 @@ class _MycookapplyState extends State<Mycookapply> {
             SizedBox(height: 20),
             TextField(
               controller: email,
+              keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 hintText: 'Email',
                 errorText: _validate ? 'Value Can\'t Be Empty' : null,
@@ -91,6 +94,7 @@ class _MycookapplyState extends State<Mycookapply> {
             SizedBox(height: 20),
             TextField(
               controller: Mob_no,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintText: 'Mob no',
                 errorText: _validate ? 'Value Can\'t Be Empty' : null,
@@ -104,6 +108,7 @@ class _MycookapplyState extends State<Mycookapply> {
               height: 200,
               child: TextField(
                 controller: comments,
+                keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   hintText: 'comments',
                   errorText: _validate ? 'Value Can\'t Be Empty' : null,
@@ -137,7 +142,7 @@ class _MycookapplyState extends State<Mycookapply> {
                         'Comments': comments.text,
                       };
                       FirebaseFirestore.instance
-                          .collection("cookapplicant")
+                          .collection("voluntaryapplicant")
                           .add(data);
                       Navigator.pop(context);
                     }

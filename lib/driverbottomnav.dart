@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:joso_app/Tutorrequest.dart';
+import 'package:joso_app/catererapply.dart';
+import 'package:joso_app/catererrequest.dart';
+import 'package:joso_app/driverapply.dart';
+import 'package:joso_app/driverrequest.dart';
+import 'package:joso_app/houserequest.dart';
 import 'package:joso_app/request.dart';
 import 'package:joso_app/apply.dart';
+import 'package:joso_app/tutorapply.dart';
 
 import 'apply.dart';
+import 'houseapply.dart';
 
-class Bottomnav extends StatefulWidget {
-  const Bottomnav({super.key});
+class driverbottomnav extends StatefulWidget {
+  const driverbottomnav({super.key});
 
   @override
-  State<Bottomnav> createState() => _BottomnavState();
+  State<driverbottomnav> createState() => _driverbottomnavState();
 }
 
-class _BottomnavState extends State<Bottomnav> {
+class _driverbottomnavState extends State<driverbottomnav> {
   int _selectedIndex = 0;
   final _screens1 = [
-    ApplyScreen(),
-    OfferScreen(),
+    DriverapplyScreen(),
+    driverOfferScreen(),
   ];
 
   @override

@@ -137,7 +137,7 @@ class _MyRegisterState extends State<MyRegister> {
                                 ),
                               ),
                               child: const Text(
-                                'Sign in',
+                                'Sign up',
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 255, 255, 255),
                                   fontSize: 20,

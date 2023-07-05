@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-class CookApply extends StatefulWidget {
-  const CookApply({super.key});
+class HouseApply extends StatefulWidget {
+  const HouseApply({super.key});
 
   @override
-  State<CookApply> createState() => _CookApplyState();
+  State<HouseApply> createState() => _HouseApplyState();
 }
 
-class _CookApplyState extends State<CookApply> {
+class _HouseApplyState extends State<HouseApply> {
   final _namecon = TextEditingController();
   final _placecon = TextEditingController();
   final _duracon = TextEditingController();
@@ -203,7 +203,7 @@ class _CookApplyState extends State<CookApply> {
                       };
                       Navigator.pop(context);
                       await FirebaseFirestore.instance
-                          .collection('cookapply')
+                          .collection('houseapply')
                           .doc()
                           .set(
                         {
@@ -259,13 +259,25 @@ class _CookApplyState extends State<CookApply> {
 
 
 
-
 //   final _namecon = TextEditingController();
 //   final _placecon = TextEditingController();
 //   final _duracon = TextEditingController();
 //   final _comcon = TextEditingController();
 //   static final _firebaseauth = FirebaseAuth.instance;
 //   final _text = TextEditingController();
+//   @override
+//   void initState() {
+//     // TODO: implement initState
+//     super.initState();
+//     //getdetails();
+//   }
+
+//   @override
+//   void dispose() {
+//     _text.dispose();
+//     super.dispose();
+//   }
+
 //   bool _validate = false;
 
 //   @override
@@ -289,11 +301,12 @@ class _CookApplyState extends State<CookApply> {
 //                 ),
 //                 TextFormField(
 //                   controller: _namecon,
-//                   decoration: const InputDecoration(
+//                   decoration: InputDecoration(
 //                       prefixIcon: Icon(Icons.person),
 //                       isDense: true,
 //                       contentPadding: EdgeInsets.all(20),
 //                       label: Text('Name'),
+//                       errorText: _validate ? 'Value Can\'t Be Empty' : null,
 //                       fillColor: Color.fromARGB(120, 255, 255, 255),
 //                       filled: true,
 //                       border: OutlineInputBorder(
@@ -319,6 +332,7 @@ class _CookApplyState extends State<CookApply> {
 //                       isDense: true,
 //                       contentPadding: const EdgeInsets.all(20),
 //                       label: const Text('Place'),
+//                       errorText: _validate ? 'Value Can\'t Be Empty' : null,
 //                       fillColor: const Color.fromARGB(120, 255, 255, 255),
 //                       filled: true,
 //                       border: const OutlineInputBorder(
@@ -344,6 +358,7 @@ class _CookApplyState extends State<CookApply> {
 //                       isDense: true,
 //                       contentPadding: const EdgeInsets.all(20),
 //                       label: const Text('Duration'),
+//                       errorText: _validate ? 'Value Can\'t Be Empty' : null,
 //                       fillColor: const Color.fromARGB(120, 255, 255, 255),
 //                       filled: true,
 //                       border: const OutlineInputBorder(
@@ -362,11 +377,12 @@ class _CookApplyState extends State<CookApply> {
 //                 ),
 //                 TextFormField(
 //                   controller: _comcon,
-//                   decoration: const InputDecoration(
+//                   decoration: InputDecoration(
 //                       prefixIcon: Icon(Icons.comment),
 //                       isDense: true,
 //                       contentPadding: EdgeInsets.all(25),
 //                       label: Text('Comments'),
+//                       errorText: _validate ? 'Value Can\'t Be Empty' : null,
 //                       fillColor: Color.fromARGB(120, 255, 255, 255),
 //                       filled: true,
 //                       border: OutlineInputBorder(
@@ -405,7 +421,7 @@ class _CookApplyState extends State<CookApply> {
 //                       };
 //                       Navigator.pop(context);
 //                       await FirebaseFirestore.instance
-//                           .collection('cookapply')
+//                           .collection('voluntaryapply')
 //                           .doc()
 //                           .set(
 //                         {
